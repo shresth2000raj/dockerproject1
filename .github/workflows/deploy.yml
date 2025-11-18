@@ -2,7 +2,8 @@ name: Docker CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches:  
+    - main 
 
 jobs:
   build-test-deploy:
@@ -34,5 +35,5 @@ jobs:
           script: |
             docker stop docker1 || true
             docker rm docker1 || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/docker1:${{ github.sha }}
-            docker run -d --name docker1 -p 80:80 ${{ secrets.DOCKER_USERNAME }}/docker1:${{ github.sha }}
+            docker pull ${{ secrets.DOCKER_USERNAME }}/project1:${{ github.sha }}
+            docker run -d --name project1 -p 80:80 ${{ secrets.DOCKER_USERNAME }}/project1:${{ github.sha }}
