@@ -35,5 +35,5 @@ jobs:
           script: |
             docker stop project1 || true
             docker rm project1 || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/project1:${{ github.sha }}
-            docker run -d --name project1 -p 80:80 ${{ secrets.DOCKER_USERNAME }}/project1:${{ github.sha }}
+             docker pull shresth2000raj/project1:${{ github.sha }}
+            docker run -d --name project1 -p 80:80 shresth2000raj/project1:${{ github.sha }}
