@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:  # <-- Allows manual trigger
 
 jobs:
   build-test-deploy:
@@ -32,8 +33,8 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-        script: |
-          docker stop docker1 || true
-          docker rm docker1 || true
-          docker pull ${{ secrets.DOCKER_USERNAME }}/docker1:${{ github.sha }}
-          docker run -d --name docker1 -p 80:80 ${{ secrets.DOCKER_USERNAME }}/docker1:${{ github.sha }}
+          script: |
+            docker stop docker1 || true
+            docker rm docker1 || true
+            docker pull ${{ secrets.DOCKER_USERNAME }}/docker1:${{ github.sha }}
+            docker run -d --name docker1 -p 80:80 ${{ secrets.DOCKER_USERNAME }}/docker1:${{ github.sha }}
